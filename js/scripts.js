@@ -1,27 +1,21 @@
 $(document).ready(function() {
+  var taskList = [];
 
   $("form#new-tasks").submit(function(event) {
   event.preventDefault();
 
-  var inputtedTask = $("input#new-task").val();
-  var tasks = { taskName: inputtedTask, completed: false};
-
-
-  $("ul#toDo").append("<li><span class='tasks'>" + tasks.taskName + "</span></li>");
-
+  var task = $("input#new-task").val();
+  taskList.push(task);
+  // var tasks = { taskName: inputtedTask, completed: false};
+  
+  $("ul#toDo").append("<span class='tasks'><li>" + taskList[taskList.length-1] + "</li></span>");
+  
   $(".tasks").click(function() {
-    tasks.completed = true;
-    $("ul#completed").append("<li><span class='complete'>" + $(this).taskName + "</span></li>");
     $(this).remove();
-
+    $(this).appendTo("ul#completed");
   }); // end of tasks last() click
-
-
 
   $("input#new-task").val("");
   }); // end of new-tasks submit
-
-
-
 
 }); // end of document
